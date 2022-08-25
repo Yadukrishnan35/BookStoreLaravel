@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,14 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('addingBook', [BookController::class, 'addingBook']);
     Route::post('updateBookById', [BookController::class, 'updateBookById']);
     Route::post('deleteBookById', [BookController::class, 'deleteBookById']);
+    Route::post('addQuantityToExistingBook', [BookController::class, 'addQuantityToExistingBook']);
+    Route::get('displayAllBooks', [BookController::class, 'displayAllBooks']);
+    Route::get('sortPriceLowToHigh', [BookController::class, 'sortPriceLowToHigh']);
+    Route::get('sortPriceHighToLow', [BookController::class, 'sortPriceHighToLow']);
+    Route::post('searchBookByKeyword', [BookController::class, 'searchBookByKeyword']);
+
+    Route::post('addBookToWishlistByBookId', [WishlistController::class, 'addBookToWishlistByBookId']);
+    Route::post('deleteBookByWishlistId', [WishlistController::class, 'deleteBookByWishlistId']);
+    Route::get('getAllBooksInWishlist', [WishlistController::class, 'getAllBooksInWishlist']);
 
 });

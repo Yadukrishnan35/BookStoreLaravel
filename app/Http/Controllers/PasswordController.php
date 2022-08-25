@@ -30,9 +30,11 @@ class PasswordController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
+            Log::warning("Email not registered");
             return response()->json([
                 'message' => 'Email is not registered',
             ], 402);
+
         } else {
 
             $token = JWTAuth::fromUser($user);

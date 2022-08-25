@@ -38,7 +38,7 @@ class Book extends Model
         $book->name = $request->input('name');
         $book->description = $request->input('description');
         $book->author = $request->input('author');
-        $book->image = $request->input('image');
+        //$book->image = $request->input('image');
         $book->Price = $request->input('Price');
         $book->quantity = $request->input('quantity');
         $book->user_id = $currentUser->id;
@@ -70,5 +70,33 @@ class Book extends Model
         $book->save();
         return $book;
     }
+
+    public function ascendingOrder()
+    {
+        return Book::select('*')->orderBy('Price')->get();
+    }
+
+    public function descendingOrder()
+    {
+       return Book::select('*')->orderBydesc('Price')->get();
+       
+    }
     
+    public function getBookDetails($bookName)
+    {
+        return Book::select('id', 'name', 'quantity', 'author', 'Price')
+            ->where('name', '=', $bookName)
+            ->first();
+    }
+
+    public static function searchBook($searchKey)
+    {
+        $userbooks = Book::select('books.id', 'books.name', 'books.description', 'books.author', 'books.Price', 'books.quantity')
+        ->Where('books.name', 'like', '%' . $searchKey . '%')
+        ->orWhere('books.author', 'like', '%' . $searchKey . '%')
+        ->orWhere('books.description', 'like', '%' . $searchKey . '%')
+        ->get();
+
+        return $userbooks;
+    }
 }

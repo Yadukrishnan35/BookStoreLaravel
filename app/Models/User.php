@@ -69,4 +69,16 @@ class User extends Authenticatable implements JWTSubject
         $user = User::where('email',$email)->first();
         return $user;
     }
+
+    public function userVerification($currentUserId)
+    {
+        $userId = User::select('id')->where([['role', '=', 'user'], ['id', '=', $currentUserId]])->get();
+        return $userId;
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany('App\Models\Wishlist');
+    }
+
 }
