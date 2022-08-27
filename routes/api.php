@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -56,5 +57,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('deleteAddress', [AddressController::class, 'deleteAddress']);
     Route::post('getAddress', [AddressController::class, 'getAddress']);
     
+    Route::post('placeOrders', [OrdersController::class, 'placeOrders']);
+    Route::post('cancelOrders', [OrdersController::class, 'cancelOrders']);
 
 });
