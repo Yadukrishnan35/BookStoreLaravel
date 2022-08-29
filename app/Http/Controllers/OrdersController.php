@@ -69,8 +69,6 @@ class OrdersController extends Controller
         }
     }
 
-
-
     public function cancelOrders(Request $request)
     {
         $request->validate([

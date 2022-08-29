@@ -42,9 +42,9 @@ class BookControllerTest extends TestCase
             'Content-Type' => 'Application/json',
             'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjYxMjIyMzA3LCJleHAiOjE2NjEyMjU5MDcsIm5iZiI6MTY2MTIyMjMwNywianRpIjoiMFdxcFBnSVJzWkxpOTFUbyIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.EQpamOeaC0RHllTiIei7GBXRvlrisuR_rCVMHQRT-gY'
         ])->json('POST', '/api/addingBook', [
-            "name" => "LDJSAAS",
-            "description" => "IPL ARTICLE",
-            "author" => "Anil",
+            "name" => "qqqq",
+            "description" => "vvv",
+            "author" => "wwww",
             "image" => self::$image,
             "Price" => "1000",
             "quantity" => "10",
