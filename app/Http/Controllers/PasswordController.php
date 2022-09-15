@@ -39,9 +39,9 @@ class PasswordController extends Controller
 
             $token = JWTAuth::fromUser($user);
             $data = array(
-                // 'name' => $user->first_name, "resetlink" => 'http://localhost:4200/resetPassword/' . $token,
-                'name' => $user->first_name, "resetlink" => $token,
-                "email" => $request->email,
+                
+                'name' => $user->firstname, "resetlink" => 'http://localhost:8080/resetPassword/' . $token, "email" => $request->email,
+                
                 "fromMail" => env('MAIL_USERNAME'),
                 "fromName" => env('APP_NAME'),
             );

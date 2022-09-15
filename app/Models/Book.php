@@ -46,6 +46,14 @@ class Book extends Model
 
         return $book;
     }
+    public function user_id()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function bookId($id)
+    {
+        return Book::where('id', $id)->first();
+    }
 
     public function findingBook($bookId)
     {

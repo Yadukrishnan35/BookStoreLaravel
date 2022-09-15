@@ -197,6 +197,39 @@ class BookController extends Controller
         }
     }
 
+    function getBookById(Request $request)
+    {
+        $validator = Validator::make($request->only('id'), [
+            'id' => 'required|integer',
+        ]);
+
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Invalid'], 400);
+        }
+
+        $currentUser = JWTAuth::authenticate($request->token);
+
+        if (!$currentUser) {
+            return response()->json([
+                'message' => 'Invalid Authorization Token',
+            ], 401);
+        }
+
+        $currentid = $currentUser->id;
+        //$note = Note::where('id', $request->id)->first();
+        $book = Book::where('user_id', $currentid)->where('id', $request->id)->first();
+
+        if (!$book) {
+            return response()->json([
+                'message' => 'Invalid id'
+            ], 401);
+        } else {
+            return response()->json(['book' => $book], 200);
+        }
+    }
+
+
     public function displayAllBooks()
     {
         try {
